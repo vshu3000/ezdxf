@@ -198,7 +198,10 @@ class SortEntsTable(DXFObject):
         dxf = super().load_dxf_attribs(processor)
         if processor:
             tags = processor.load_dxfattribs_into_namespace(dxf, acdb_sort_ents_table)
-            self.load_table(tags)
+            try:
+                self.load_table(tags)   # Mayfail 房山.dxf
+            except:
+                pass
         return dxf
 
     def load_table(self, tags: 'Tags') -> None:

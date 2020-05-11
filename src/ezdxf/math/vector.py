@@ -296,7 +296,11 @@ class Vector:
 
     def normalize(self, length: float = 1.) -> 'Vector':
         """ Returns normalized vector, optional scaled by `length`. """
-        return self.__mul__(length / self.magnitude)
+        if self.magnitude == 0:
+            scale = 0
+        else:
+            scale = length / self.magnitude
+        return self.__mul__(scale)
 
     def reversed(self) -> 'Vector':
         """ Returns negated vector (-`self`). """
